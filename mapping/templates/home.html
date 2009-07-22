@@ -3,8 +3,18 @@
 
 {% block content %}
 
-<p>Hello.</p>
+<h1>Hello.</h1>
 
 <p>Go <a href="/auth/">here</a> to authenticate with CODA.</p>
 <p>Go <a href="/search/">here</a> to search for a series on Timetric</p>
+
+{% if graphs %}
+<h2>You have created the following graphs</h2>
+<ul>
+    {% for g in graphs %}
+    <li><a href="{% url standard_plot g.pk %}">{{g.title}}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+
 {% endblock %}
