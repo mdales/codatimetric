@@ -1,3 +1,14 @@
+import os
+from os.path import abspath, dirname
+from ConfigParser import ConfigParser
+
+PROJECT_ROOT = dirname(abspath(__file__))
+
+# This list is for values to be treated as strings
+OVERRIDABLE_STRINGS = []
+OVERRIDABLE_BOOLEANS = ['DEBUG',]
+                        
+
 # Django settings for codatimetric project.
 
 DEBUG = True
@@ -76,5 +87,21 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.admin',
     'codatimetric.mapping',
 )
+
+def get_settings(keylist, t):
+    if t == str:
+        get = config.get
+    elif t == bool:
+        get = config.getboolean
+    for settings_var in keylist:
+        cfg_key = settings_var.replace('_', '-').lower()
+        if config.has_option('codatimetric', cfg_key):
+            globals()[settings_var] = get('codatimetric', cfg_key)
+
+config = ConfigParser()
+if config.read([os.path.join(PROJECT_ROOT, 'codatimetric.cfg')]):
+    get_settings(OVERRIDABLE_STRINGS, str)
+    get_settings(OVERRIDABLE_BOOLEANS, bool)
