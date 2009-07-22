@@ -37,3 +37,9 @@ class RemoteToken(models.Model):
        return "token %s for user %s" % (self.key, self.user.username)
 #
 ##############################################################################
+
+class Graph(models.Model):
+    user = models.ForeignKey(User)
+    timetric_id = models.CharField(max_length=22)
+    title = models.CharField(max_length=120)
+    
