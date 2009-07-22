@@ -10,6 +10,7 @@ urlpatterns = patterns(
 urlpatterns += patterns(
     'mapping.views',
     url(r'^graph/$', 'graph', name="graph"),
+    url(r'^graph/(\d+)/$', 'graph_view', name="graph-view"),
 )
 
 urlpatterns += patterns(

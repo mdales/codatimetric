@@ -30,3 +30,8 @@ def graph(request):
             context_instance=RequestContext(request))
     else:
         return HttpResponseNotAllowed(["POST",])
+        
+@login_required
+def graph_view(request,pk):
+    return render_to_response("graph.html", {"pk":pk}, 
+        context_instance=RequestContext(request))    
