@@ -5,11 +5,12 @@ from ConfigParser import ConfigParser
 PROJECT_ROOT = dirname(abspath(__file__))
 
 # This list is for values to be treated as strings
-OVERRIDABLE_STRINGS = []
+OVERRIDABLE_STRINGS = ['CODA_KEY', 'CODA_SECRET', 'CODA_SERVER']
 OVERRIDABLE_BOOLEANS = ['DEBUG',]
                         
 
 # Django settings for codatimetric project.
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG

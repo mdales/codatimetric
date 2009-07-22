@@ -6,3 +6,10 @@ urlpatterns = patterns(
     'mapping.views',
     (r'^$',                                         'home'),
 )
+
+urlpatterns += patterns(
+    'mapping.authviews',
+    (r'^auth/$',                                    'coda_pre_auth'),
+    (r'^auth/go/$',                                 'coda_auth'),
+    (r'^auth/done/$',                               'coda_auth_done'),
+)
