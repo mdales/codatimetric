@@ -8,6 +8,11 @@ from django.contrib.auth.decorators import login_required
 from django import forms
 
 
+from codatimetric.mapping.models import RemoteToken
+
+from codatimetric.mapping.oauthwrapper import *
+from codatimetric.mapping.coda import *
+
 ##############################################################################
 #        
 @login_required
@@ -31,7 +36,7 @@ def coda_auth(request):
     if request_token != None:
         
         request = 'oauth_token=%s&oauth_callback=%s' % (request_token.key, 
-                urllib.quote('http://nabaztag.camvine.com/auth/done/'))
+                urllib.quote('http://%s/auth/done/' % request.META['HTTP_HOST']))
         
         return HttpResponseRedirect("%soauth/authorize/?%s" % (settings.CODA_SERVER, request))
     else:
