@@ -10,6 +10,9 @@ from django import forms
                          
 from models import Graph
 
+from codatimetric.mapping.coda import add_new_web_source
+from codatimetric.mapping.models import RemoteToken
+
 @login_required
 def home(request):
     graphs = Graph.objects.filter(user=request.user)
@@ -25,6 +28,10 @@ def graph(request):
         graph.timetric_id = request.POST["id"]
         graph.user = request.user
         graph.save()
+        
+        token = RemoteToken.objects.filter(user=request.user)[0]
+        add_new_web_source(token, graph.title, 
+            'http://%s/plot/%s/standard/' % (request.META['HTTP_HOST'], graph.id))
         
         return render_to_response("graph.html", {"pk":graph.pk}, 
             context_instance=RequestContext(request))

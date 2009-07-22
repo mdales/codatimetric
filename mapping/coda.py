@@ -21,11 +21,12 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
+import simplejson
 
 from codatimetric import settings
 from codatimetric.mapping.oauthwrapper import *
 
-BASE_CODA_URL="https://coda.camvine.com/external/json/"
+BASE_CODA_URL="%sexternal/json/" % settings.CODA_SERVER
 
 
 ##############################################################################
@@ -54,6 +55,17 @@ def get_source_list(access_token):
         return reply['response']
     else:
         return []
+#
+##############################################################################
+
+
+##############################################################################
+#       
+def add_new_web_source(access_token, name, url):
+    reply = make_api_request(access_token, BASE_CODA_URL + "createSource/",
+        {'name': name, 'type': '3c554dfe-f094-5f7e-0013-000000000010', 
+        'parameters': simplejson.dumps({'url': url})})
+    return reply
 #
 ##############################################################################
 
