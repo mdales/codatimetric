@@ -1,5 +1,5 @@
 
-
+from django.core import urlresolvers
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, Http404, HttpResponseNotAllowed
 from django.utils.encoding import DjangoUnicodeDecodeError
@@ -33,8 +33,7 @@ def graph(request):
         add_new_web_source(token, graph.title, 
             'http://%s/plot/%s/standard/' % (request.META['HTTP_HOST'], graph.id))
         
-        return render_to_response("graph.html", {"pk":graph.pk}, 
-            context_instance=RequestContext(request))
+        return HttpResponseRedirect(urlresolvers.reverse("graph-view", args=[graph.pk,]))
     else:
         return HttpResponseNotAllowed(["POST",])
         
