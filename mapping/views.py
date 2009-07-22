@@ -12,7 +12,5 @@ from django import forms
 @login_required
 def home(request):
     
-    print request.REQUEST
-    
     return render_to_response("home.html", {}, 
         context_instance=RequestContext(request))
