@@ -14,7 +14,7 @@
 
 <ul>
 {% for s in series %}
-<li>{{s.title}}</li>
+<li>{{s.title}}<form method="POST" action="{% url graph %}"><input type="hidden" name="title" value="{{s.title}}"><input type="hidden" name="id" value="{{s.name}}"><input type="submit" value="This one"></form></li>
 {% endfor %}
 </ul>
 {% endif %}
