@@ -76,10 +76,13 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'codatimetric.urls'
 
+import os
+
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    "%s/templates" % os.getcwd(),
 )
 
 INSTALLED_APPS = (
