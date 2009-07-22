@@ -25,7 +25,7 @@ def search(request):
             h = httplib2.Http(".cache")
             requrl = "http://timetric.com/search/results.fat.json?q="+ f.cleaned_data["title"]
             resp, content = h.request(requrl, "GET")
-            series = simplejson.loads(content)
-            print series["results"]
-    return render_to_response("search.html", {"form":f, "series":series["results"]}, 
+            series = simplejson.loads(content)["results"]
+            print series
+    return render_to_response("search.html", {"form":f, "series":series}, 
         context_instance=RequestContext(request))
