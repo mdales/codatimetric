@@ -5,6 +5,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^', include('codatimetric.mapping.urls')),
+    (r'^', include('codatimetric.search.urls')),
     (r'^admin/(.*)', admin.site.root),
 )
 

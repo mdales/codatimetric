@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h1>Search Timetric</h1>
+<form method="GET" action=".">
+{{form.as_p}}
+	<input type="submit" id="searchButton" value="Search">
+</form>
+
+{% if series %}
+<h2>Search Results</h2>
+
+<ul>
+{% for s in series %}
+<li>{{s.title}}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}

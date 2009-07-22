@@ -92,6 +92,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'codatimetric.mapping',
+    'codatimetric.search',
 )
 
 def get_settings(keylist, t):
