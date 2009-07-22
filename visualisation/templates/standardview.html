@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Timetric graph wrapper</title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript"></script>
+	<script src="/static/tools.flashembed-1.0.3.js" type="text/javascript"></script>
+	
+	
+    <script type="text/javascript">
+        $(document).ready(function () {
+	
+			var graph_id = '{{time_series_id}}';
+			
+	
+			// first make the widget div the full size of the screen
+			var width = $(document).width() - 30;
+			var height = $(document).height() - 30;
+	
+			$("#container").width(width);
+			$("#container").height(height);
+			
+			// work out the time now, and the time we want to start from
+			// at some point we hope timetric will support something more like
+			// now.toUTCString, as I need to munge dates here :)
+			var now = new Date();			
+			end_str = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + 
+				now.getDate() + 'T' + now.getHours() + ":" + now.getMinutes() + ":00Z";
+			
+			var then = new Date(now.getTime() - (24 * 60 * 60 * 1000));	
+			start_str = then.getFullYear() + '-' + (then.getMonth() + 1) + '-' + 
+				then.getDate() + 'T' + then.getHours() + ":" + then.getMinutes() + ":00Z";
+		
+            var conf = {"src": "http://media.timetric.com/swf/plotter.swf",
+				"version": [9,115],
+				"wmode": "opaque",
+				"id": "graphy"};
+                        
+            $("#container").flashembed(conf, 
+				{data: "http%3A%2F%2Ftimetric.com%2Fembed%2F" + graph_id + "%2Fgraph%2F"});
+      //          /*config : {time: {start: start_str, end: end_str}*/
+    //        });
+        });
+    </script>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+</html>
