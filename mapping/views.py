@@ -30,8 +30,7 @@ def graph(request):
         graph.save()
         
         token = RemoteToken.objects.filter(user=request.user)[0]
-        add_new_web_source(token, graph.title, 
-            'http://%s/plot/%s/standard/' % (request.META['HTTP_HOST'], graph.id))
+        add_new_timetric_source(token, graph.title, graph.id)
         
         return HttpResponseRedirect(urlresolvers.reverse("graph-view", args=[graph.pk,]))
     else:

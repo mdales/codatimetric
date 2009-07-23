@@ -61,10 +61,10 @@ def get_source_list(access_token):
 
 ##############################################################################
 #       
-def add_new_web_source(access_token, name, url):
+def add_new_timetric_source(access_token, name, id):
     reply = make_api_request(access_token, BASE_CODA_URL + "createSource/",
-        {'name': name, 'type': '3c554dfe-f094-5f7e-0013-000000000010', 
-        'parameters': simplejson.dumps({'url': url})})
+        {'name': name, 'type': '3c554dfe-f094-5f7e-0013-00000000001b', 
+        'parameters': simplejson.dumps({'id': id})})
     return reply
 #
 ##############################################################################
