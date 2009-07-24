@@ -10,7 +10,7 @@ from django import forms
                          
 from models import Graph
 
-from codatimetric.mapping.coda import add_new_web_source
+from codatimetric.mapping.coda import add_new_timetric_source
 from codatimetric.mapping.models import RemoteToken
 
 @login_required

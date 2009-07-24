@@ -5,7 +5,8 @@ from ConfigParser import ConfigParser
 PROJECT_ROOT = dirname(abspath(__file__))
 
 # This list is for values to be treated as strings
-OVERRIDABLE_STRINGS = ['CODA_KEY', 'CODA_SECRET', 'CODA_SERVER']
+OVERRIDABLE_STRINGS = ['CODA_KEY', 'CODA_SECRET', 'CODA_SERVER',
+    'DATABASE_ENGINE', 'DATABASE_NAME', 'DATABASE_USER', 'DATABASE_PASSWORD']
 OVERRIDABLE_BOOLEANS = ['DEBUG',]
                         
 
