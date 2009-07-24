@@ -27,6 +27,7 @@ def graph(request):
         graph.title = request.POST["title"]
         graph.timetric_id = request.POST["id"]
         graph.user = request.user
+        graph.save() # need this save to make sure there's an ID!
         
         token = RemoteToken.objects.filter(user=request.user)[0]
         source_uuid = add_new_timetric_source(token, graph.title, graph.id)
