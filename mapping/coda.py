@@ -65,7 +65,11 @@ def add_new_timetric_source(access_token, name, id):
     reply = make_api_request(access_token, BASE_CODA_URL + "createSource/",
         {'name': name, 'type': '3c554dfe-f094-5f7e-0013-00000000001b', 
         'parameters': simplejson.dumps({'id': str(id)})})
-    return reply
+        
+    if reply['result'] == "OK":
+        return reply['response']['source_uuid']
+    else:
+        return None
 #
 ##############################################################################
 

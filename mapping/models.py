@@ -42,4 +42,5 @@ class Graph(models.Model):
     user = models.ForeignKey(User)
     timetric_id = models.CharField(max_length=22)
     title = models.CharField(max_length=120)
+    coda_source_id = models.CharField(max_length=36, blank=True, null=True)
     

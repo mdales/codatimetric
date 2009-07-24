@@ -12,7 +12,7 @@
 <h2>You have created the following graphs</h2>
 <ul>
     {% for g in graphs %}
-    <li><a href="{% url standard_plot g.pk %}">{{g.title}}</a></li>
+    <li><a href="{% url graph-view g.pk %}">{{g.title}}</a></li>
     {% endfor %}
 </ul>
 {% endif %}

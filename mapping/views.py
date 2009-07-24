@@ -27,10 +27,13 @@ def graph(request):
         graph.title = request.POST["title"]
         graph.timetric_id = request.POST["id"]
         graph.user = request.user
-        graph.save()
         
         token = RemoteToken.objects.filter(user=request.user)[0]
-        add_new_timetric_source(token, graph.title, graph.id)
+        source_uuid = add_new_timetric_source(token, graph.title, graph.id)
+
+        graph.coda_source_id = source_uuid
+        graph.save()
+        
         
         return HttpResponseRedirect(urlresolvers.reverse("graph-view", args=[graph.pk,]))
     else:
