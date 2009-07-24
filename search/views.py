@@ -22,7 +22,7 @@ def search(request):
         f = SearchForm(request.GET)
         if f.is_valid():
             print "Retrieving search results for title: ", f.cleaned_data["title"]
-            h = httplib2.Http(".cache")
+            h = httplib2.Http("/tmp/ct-cache")
             requrl = "http://timetric.com/search/results.fat.json?q="+ f.cleaned_data["title"]
             resp, content = h.request(requrl, "GET")
             series = simplejson.loads(content)["results"]
